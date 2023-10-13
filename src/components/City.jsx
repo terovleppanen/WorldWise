@@ -21,7 +21,10 @@ function City() {
     function () {
       getCity(id);
     },
-    [id]
+    [id, getCity]
+    // getCity must be memoized in order this useEffect to work.
+    // if it isn't memoized with useCallback this useEffect will
+    // end up infinite loop which isn't preferable
   );
 
   const { cityName, emoji, date, notes } = currentCity;
